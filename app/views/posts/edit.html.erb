@@ -4,3 +4,4 @@
 
 <%= link_to 'Show', @post %> |
 <%= link_to 'Back', posts_path %>
+<%= link_to "Delete Comment", [comment.post, comment], method: :destroy, data: { confirm: 'Are you sure?' } %>

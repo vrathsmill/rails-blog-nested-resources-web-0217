@@ -4,12 +4,35 @@
 <%= @post.name %>
 <h3>Content:</h3>
 <%= @post.content %>
+
 <h3>Tags:</h3>
 <ul>
   <% @post.tags.each do |tag| %>
   <li><%= tag.name %></li>
   <% end %>
 </ul>
+
+
+<h3> Comments:</h3>
+
+  <% @post.comments.each do |comment| %>
+  <p><%= comment.content %></p>
+  <% end %>
+
+<h4>Make a comment:</h4>
+
+<%= form_for @post do |f| %>
+  <div class="field">
+  <%= f.label :content %><br>
+  <%= f.text_area :content, :id => "Content" %><br>
+  <%= f.hidden_field :post_id, :value => @post.id %>
+  <%= link_to "Destroy", @post, method: :destroy, data: { confirm: "Really?" } %>
+  <%= f.submit :value => "Create Comment" %>
+<% end %>
+</div>
+
+
+
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>

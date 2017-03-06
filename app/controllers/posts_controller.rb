@@ -6,11 +6,13 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
   end
 
   def new
     @post = Post.new
     @tags = @post.tags.new
+    @comments = @post.comments.new
   end
 
   def edit
@@ -47,6 +49,7 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url }
       format.json { head :no_content }
     end
+    redirect_to @post 
   end
 
   private
